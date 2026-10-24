@@ -129,10 +129,21 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-_db_path = Path(
-    os.environ.get("DJANGO_DB_PATH", str(BASE_DIR / "db.sqlite3"))
-)
-_db_path.parent.mkdir(parents=True, exist_ok=True)
+# Prefer a path under the app directory on Render native runtimes.
+# Docker Compose can override with DJANGO_DB_PATH=/app/data/db.sqlite3
+_db_env = os.environ.get("DJANGO_DB_PATH", "").strip()
+if _db_env:
+    _db_path = Path(_db_env)
+    if not _db_path.is_absolute():
+        _db_path = BASE_DIR / _db_path
+else:
+    _db_path = BASE_DIR / "data" / "db.sqlite3"
+
+try:
+    _db_path.parent.mkdir(parents=True, exist_ok=True)
+except OSError:
+    # Fall back to a writable location next to manage.py
+    _db_path = BASE_DIR / "db.sqlite3"
 
 DATABASES = {
     'default': {
@@ -140,6 +151,7 @@ DATABASES = {
         'NAME': str(_db_path),
     }
 }
+
 
 
 

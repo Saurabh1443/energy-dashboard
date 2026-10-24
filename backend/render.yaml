@@ -15,9 +15,12 @@ services:
       - key: DJANGO_ALLOWED_HOSTS
         sync: false
       - key: DJANGO_DB_PATH
-        value: /app/data/db.sqlite3
+        value: data/db.sqlite3
+      - key: PYTHON_VERSION
+        value: "3.11.11"
       - key: SKIP_SEED
         value: "false"
+
       - key: CORS_ALLOW_ALL_ORIGINS
         value: "False"
       - key: CORS_ALLOWED_ORIGINS
