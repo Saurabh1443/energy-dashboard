@@ -1,0 +1,26 @@
+# Optional Render Blueprint. You can also create the service manually in the UI.
+services:
+  - type: web
+    name: uk-wind-portal-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /api/v1/monthly-summary/
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        sync: false
+      - key: DJANGO_DB_PATH
+        value: /app/data/db.sqlite3
+      - key: SKIP_SEED
+        value: "false"
+      - key: CORS_ALLOW_ALL_ORIGINS
+        value: "False"
+      - key: CORS_ALLOWED_ORIGINS
+        value: https://uk-wind-portal.vercel.app,http://localhost:5173
+      - key: CSRF_TRUSTED_ORIGINS
+        value: https://uk-wind-portal.vercel.app,http://localhost:5173
