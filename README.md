@@ -140,4 +140,4 @@ All product decisions, verification of API behaviour, and final ownership of the
 
 ## Data source
 
-Generation actuals and forecasts are sourced from the public Elexon BMRS APIs (FUELHH, WINDFOR). Use of that data is subject to Elexon’s terms.
+Generation actuals and forecasts are sourced from the public Elexon BMRS APIs (FUELHH, WINDFOR).
