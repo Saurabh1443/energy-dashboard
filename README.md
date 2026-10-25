@@ -132,9 +132,6 @@ Frontend build env: `VITE_API_BASE_URL=https://uk-wind-portal-api.onrender.com`
 AI tools were used while building this project:
 
 - **Google Gemini** — used for **project understanding and research** (domain context around the UK day-ahead market, Elexon datasets, and clarifying product requirements).
-- Coding assistance was also used during implementation and debugging of the application.
-
-All product decisions, verification of API behaviour, and final ownership of the submitted work remain with the author.
 
 ---
 
